@@ -5,15 +5,16 @@ const { Header: Heade } = Layout
 
 const Header: React.FC = () => {
     return (
-        <Heade>
+        <Heade style={{
+            position: 'fixed',
+            zIndex: 1,
+            width: '100%',
+        }}>
             <Menu
                 theme='dark'
                 mode='horizontal'
                 items={MenuOptions}
-                defaultSelectedKeys={['1']}
-            >
-
-            </Menu>
+            />
         </Heade>
     )
 }
