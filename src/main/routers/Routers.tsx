@@ -6,7 +6,7 @@ const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MakeHome />} />
+        <Route path="/home" element={<MakeHome />} />
       </Routes>
     </BrowserRouter>
   )
