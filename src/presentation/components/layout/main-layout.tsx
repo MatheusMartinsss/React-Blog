@@ -1,27 +1,19 @@
 import React from 'react'
-import { Layout } from 'antd'
 import Header from '../header/header'
 import Footer from '../footer/footer';
-import "./layout.css"
-const { Content } = Layout
+import { Container } from '@mui/material';
 type Props = {
     children?: React.ReactNode
 };
 const MainLayout: React.FC<Props> = ({ children }) => {
     return (
-        <Layout style={{
-            minHeight: '100vh'
-        }}>
+        <React.Fragment >
             <Header />
-            <Content  style={{
-                padding: '0 50px',
-            }} >
-                <div className="site-layout-content">
-                    {children}
-                </div>
-            </Content>
+            <Container sx={{ padding: '24px' }} >
+                {children}
+            </Container>
             <Footer />
-        </Layout>
+        </React.Fragment>
     )
 }
 export default MainLayout;
