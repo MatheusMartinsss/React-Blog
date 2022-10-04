@@ -7,7 +7,6 @@ type Props = {
 export const AppCtx = createContext<PostContextType | null>(null);
 
 const PostsProvider: React.FC<Props> = ({ children }) => {
-    
     const [posts, setPosts] = useState<IPost[]>([])
     const addPost = (post: IPost) => {
         const newPost: IPost = {

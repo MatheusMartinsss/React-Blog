@@ -1,17 +1,13 @@
 import React from 'react'
 import { Card, CardMedia, CardContent, Typography, CardHeader, Box } from '@mui/material'
-type Props = {
-    image?: string
-    tittle?: string
-    description?: string
-    avatar?: string
-    date?: string
-};
-const PostCard: React.FC<Props> = ({ image, tittle, description, avatar, date }) => {
+import { IPost } from '../../../domain/models'
+
+const PostCard: React.FC<IPost> = ({ id, image, tittle, description, date }) => {
     return (
         <Card
             variant='outlined'
             sx={{ display: 'flex', padding: '5px 0 5px 0px', }}
+            key={id}
         >
             <CardMedia
                 component="img"
