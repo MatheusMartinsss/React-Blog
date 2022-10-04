@@ -1,15 +1,15 @@
 import React from 'react'
-import { Layout } from 'antd'
-const { Footer: Foote } = Layout
+import { Box, Container, Typography } from '@mui/material'
+
 const Footer: React.FC = () => {
     return (
-        <Foote
-            style={{
-                textAlign: 'center',
-            }}
-        >
-            Footer
-        </Foote>
+        <Container maxWidth='lg'>
+            <Box justifyContent='center' textAlign='center'>
+                <Typography variant="caption" display="block" gutterBottom>
+                    Copyright @
+                </Typography>
+            </Box>
+        </Container>
     )
 }
 export default Footer
