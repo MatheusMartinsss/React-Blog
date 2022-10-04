@@ -6,7 +6,7 @@ type Props = {
 };
 export const AppCtx = createContext<IUserContextType | null>(null);
 
-const PostsProvider: React.FC<Props> = ({ children }) => {
+const UserProvider: React.FC<Props> = ({ children }) => {
     const [user, setUser] = useState<IUser>({})
 
     const authUser = (props: IUser) => {
@@ -18,8 +18,8 @@ const PostsProvider: React.FC<Props> = ({ children }) => {
     return <AppCtx.Provider value={{ user, authUser, logoutUser }}> {children} </AppCtx.Provider>
 }
 
-export const usePosts = () => {
+export const userAuth = () => {
     const context = useContext(AppCtx)
     return context
 }
-export default PostsProvider
+export default UserProvider
