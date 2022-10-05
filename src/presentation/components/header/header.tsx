@@ -1,12 +1,13 @@
 import React from 'react'
-import { Box, AppBar, Toolbar, Typography, Button, Stack } from '@mui/material'
+import { Box, AppBar, Toolbar, Typography, Button, Stack, IconButton } from '@mui/material'
 import { MenuOptions } from './menuItems'
 import { useUser } from '../../../domain/context/user-context'
 import { IUser } from '../../../domain/models'
+import { Logout } from '@mui/icons-material/';
 const Header: React.FC = () => {
     const user: IUser = {
         id: 1,
-        name: 'teste',
+        name: 'admin',
         role: 'admin'
     }
     const { getCurrentUser, setLoggedUser, logoutUser } = useUser()
@@ -23,18 +24,23 @@ const Header: React.FC = () => {
                             </Typography>
                         ))}
                     </Stack>
-                    {getCurrentUser() ? (
-                        <Stack direction='row' spacing={2} textAlign = 'center'>
-                            <Typography variant="h6" component="div" >
+                    <Stack direction='row'>
+                        {getCurrentUser() ? (
+                            <Typography variant="h5" component="div"  >
                                 Olá, {getCurrentUser()?.name}
+                                <IconButton onClick={logout} color="inherit">
+                                    <Logout />
+                                </IconButton>
                             </Typography>
-                            <Button onClick={logout} color="inherit">Logout</Button>
-                        </Stack>
-                    ) : (
-                        <Stack direction='row' spacing={2}>
-                            <Button onClick={auth} color="inherit">Login</Button>
-                        </Stack>
-                    )}
+                        ) : (
+                            <Button onClick={auth}  component='div' color="inherit">
+                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Entrar
+                                </Typography>
+                            </Button>
+                        )}
+                    </Stack>
+
                 </Toolbar>
             </AppBar>
         </Box>
