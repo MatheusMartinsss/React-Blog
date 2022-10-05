@@ -18,11 +18,23 @@ const Header: React.FC = () => {
             <AppBar position="static" color='default'>
                 <Toolbar sx={{ justifyContent: 'space-between', textAlign: 'center' }}>
                     <Stack direction='row' spacing={2} >
-                        {MenuOptions.map(({ label, key }) => (
-                            <Typography key={key} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                {label}
-                            </Typography>
-                        ))}
+                        {MenuOptions.map(({ label, key, roles }, index) => {
+                            if (!roles.length) {
+                                return (
+                                    <Typography key={index} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                        {label}
+                                    </Typography>
+                                )
+                            }
+                            if (roles.includes(getCurrentUser()?.role)) {
+                                return (
+                                    <Typography key={index} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                        {label}
+                                    </Typography>
+                                )
+                            }
+                            return null
+                        })}
                     </Stack>
                     <Stack direction='row'>
                         {getCurrentUser() ? (
@@ -33,7 +45,7 @@ const Header: React.FC = () => {
                                 </IconButton>
                             </Typography>
                         ) : (
-                            <Button onClick={auth}  component='div' color="inherit">
+                            <Button onClick={auth} component='div' color="inherit">
                                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                                     Entrar
                                 </Typography>
@@ -43,7 +55,7 @@ const Header: React.FC = () => {
 
                 </Toolbar>
             </AppBar>
-        </Box>
+        </Box >
     )
 }
 
