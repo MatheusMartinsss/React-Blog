@@ -4,7 +4,7 @@ import { PostContextType, IPost } from '../models/'
 type Props = {
     children?: React.ReactNode
 };
-export const AppCtx = createContext<PostContextType | null>(null);
+const AppCtx = createContext<PostContextType>({} as PostContextType);
 
 const PostsProvider: React.FC<Props> = ({ children }) => {
     const [posts, setPosts] = useState<IPost[]>([])
@@ -25,8 +25,5 @@ const PostsProvider: React.FC<Props> = ({ children }) => {
     return <AppCtx.Provider value={{ posts, addPost, updatePost }}> {children} </AppCtx.Provider>
 }
 
-export const usePosts = () => {
-    const context = useContext(AppCtx)
-    return context
-}
+export const usePosts = () => useContext(AppCtx)
 export default PostsProvider
