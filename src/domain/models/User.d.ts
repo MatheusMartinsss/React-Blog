@@ -1,6 +1,6 @@
 export type IUserContextType = {
-    user: IUser
-    authUser: (user: IUser) => void
+    getCurrentUser: () => IUser | null
+    setLoggedUser: (user: IUser) => void
     logoutUser: () => void
 }
 export interface IUser {

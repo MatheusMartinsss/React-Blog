@@ -4,22 +4,16 @@ import { IUserContextType, IUser } from '../models/'
 type Props = {
     children?: React.ReactNode
 };
-export const AppCtx = createContext<IUserContextType | null>(null);
+export const AppCtx = createContext<IUserContextType>({} as IUserContextType);
 
 const UserProvider: React.FC<Props> = ({ children }) => {
-    const [user, setUser] = useState<IUser>({})
+    const [user, setUser] = useState<IUser | null>(null)
 
-    const authUser = (props: IUser) => {
-        return setUser(props)
-    }
-    const logoutUser = () => {
-        return setUser({})
-    }
-    return <AppCtx.Provider value={{ user, authUser, logoutUser }}> {children} </AppCtx.Provider>
+    const getCurrentUser = () => user
+    const setLoggedUser = (props: IUser) => setUser(props)
+    const logoutUser = () => setUser(null)
+    return <AppCtx.Provider value={{ getCurrentUser, setLoggedUser, logoutUser }}> {children} </AppCtx.Provider>
 }
 
-export const userAuth = () => {
-    const context = useContext(AppCtx)
-    return context
-}
+export const useUser = () => useContext(AppCtx)
 export default UserProvider
