@@ -18,22 +18,13 @@ const Header: React.FC = () => {
             <AppBar position="static" color='default'>
                 <Toolbar sx={{ justifyContent: 'space-between', textAlign: 'center' }}>
                     <Stack direction='row' spacing={2} >
-                        {MenuOptions.map(({ label, key, roles }, index) => {
-                            if (!roles.length) {
-                                return (
-                                    <Typography key={index} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                        {label}
-                                    </Typography>
-                                )
-                            }
-                            if (roles.includes(getCurrentUser()?.role)) {
-                                return (
-                                    <Typography key={index} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                        {label}
-                                    </Typography>
-                                )
-                            }
-                            return null
+                        {MenuOptions.map(({ label, key }) => {
+                            return (
+                                <Typography key={key} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    {label}
+                                </Typography>
+                            )
+
                         })}
                     </Stack>
                     <Stack direction='row'>
